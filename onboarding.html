@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to MindMarkAI</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 600px;
+      width: 100%;
+      padding: 48px;
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 64px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    .status-section {
+      margin-bottom: 32px;
+    }
+
+    .loader {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #667eea;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 16px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .status-text {
+      font-size: 14px;
+      color: #666;
+    }
+
+    button {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .progress-container {
+      margin-top: 24px;
+    }
+
+    progress {
+      width: 100%;
+      height: 12px;
+      border-radius: 6px;
+      overflow: hidden;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    progress::-webkit-progress-bar {
+      background-color: #f3f3f3;
+      border-radius: 6px;
+    }
+
+    progress::-webkit-progress-value {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 6px;
+    }
+
+    .progress-text {
+      margin-top: 12px;
+      font-size: 14px;
+      color: #666;
+      font-weight: 600;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .setup-guide {
+      text-align: left;
+      background: #fff9e6;
+      border: 2px solid #ffd700;
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 24px;
+    }
+
+    .setup-guide h3 {
+      color: #f59e0b;
+      margin-bottom: 16px;
+      font-size: 18px;
+    }
+
+    .setup-guide ol {
+      padding-left: 20px;
+      margin-bottom: 16px;
+    }
+
+    .setup-guide li {
+      margin-bottom: 12px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .setup-guide code {
+      background: #f3f4f6;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: #667eea;
+    }
+
+    .success-icon {
+      font-size: 64px;
+      margin-bottom: 16px;
+    }
+
+    .features {
+      text-align: left;
+      margin-top: 32px;
+      padding-top: 32px;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .features h3 {
+      font-size: 18px;
+      margin-bottom: 16px;
+      color: #111;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .feature-icon {
+      font-size: 24px;
+      margin-right: 12px;
+    }
+
+    .feature-text {
+      flex: 1;
+    }
+
+    .feature-title {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 4px;
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .info-box {
+      text-align: left;
+      background: #f0f9ff;
+      border: 2px solid #3b82f6;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 24px;
+    }
+
+    .info-box h4 {
+      color: #1e40af;
+      margin-bottom: 12px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .info-box ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .info-box li {
+      margin-bottom: 12px;
+      padding-left: 0;
+      font-size: 14px;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .info-box li:last-child {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">🧠</div>
+    <h1>Welcome to MindMarkAI</h1>
+    <p class="subtitle">Save now, Think later. Intelligent bookmarking assistant.<br>(It's Free, No Usage Limits)</p>
+
+    <!-- Loading Status -->
+    <div id="status-checking" class="status-section">
+      <div class="loader"></div>
+      <p class="status-text">Checking AI model status...</p>
+    </div>
+
+    <!-- Model Needs Download -->
+    <div id="status-download" class="status-section hidden">
+      <p class="status-text" style="margin-bottom: 20px;">Google Gemini Nano model needs to be downloaded for AI features to work locally. It's a model owned by Google, made for Chrome.</p>
+      <button id="download-btn">Download Gemini Nano (~30 seconds)</button>
+      <div id="progress-container" class="progress-container hidden">
+        <progress id="progress-bar" value="0" max="100"></progress>
+        <p class="progress-text" id="progress-text">Downloading... 0%</p>
+      </div>
+    </div>
+
+    <!-- Model Ready -->
+    <div id="status-ready" class="status-section hidden">
+      <div class="success-icon">✓</div>
+      <h2 style="color: #10b981; margin-bottom: 16px;">You're All Set!</h2>
+      <p class="status-text" style="margin-bottom: 24px;">Start saving bookmarks with AI-powered summaries.</p>
+      <button id="start-btn">Get Started</button>
+
+      <div class="features">
+        <h3>What you get:</h3>
+        <div class="feature-item">
+          <div class="feature-icon">📚</div>
+          <div class="feature-text">
+            <div class="feature-title">Smart Summaries</div>
+            <div class="feature-desc">AI reads pages so you don't have to - get the key points instantly</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🔍</div>
+          <div class="feature-text">
+            <div class="feature-title">AI-Powered Search</div>
+            <div class="feature-desc">Find anything using natural language: "find the article I saved a month ago about Epic Systems"</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📸</div>
+          <div class="feature-text">
+            <div class="feature-title">Intelligent Screenshots</div>
+            <div class="feature-desc">Capture and let AI analyze and save screenshots intelligently</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">💼</div>
+          <div class="feature-text">
+            <div class="feature-title">LinkedIn Integration</div>
+            <div class="feature-desc">Save posts directly from your LinkedIn feed with one click</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🔒</div>
+          <div class="feature-text">
+            <div class="feature-title">100% Private</div>
+            <div class="feature-desc">Everything runs on your device - no cloud, no tracking, no data leaves Chrome</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <h4>💡 Good to know:</h4>
+        <ul>
+          <li><strong>Multi-language support:</strong> You can save pages in any language, but summaries will be generated in English.</li>
+          <li><strong>First-time processing:</strong> The first summary may take 20-30 seconds as the AI model initializes. Subsequent summaries will be faster.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Model Unavailable -->
+    <div id="status-unavailable" class="status-section hidden">
+      <div class="setup-guide">
+        <h3>⚠️ Gemini Nano Not Enabled</h3>
+        <p style="margin-bottom: 16px;">Follow these steps to enable Chrome's built-in AI:</p>
+        <ol>
+          <li>Open <code>chrome://flags/#optimization-guide-on-device-model</code></li>
+          <li>Set to <strong>"Enabled BypassPerfRequirement"</strong></li>
+          <li>Open <code>chrome://flags/#prompt-api-for-gemini-nano</code></li>
+          <li>Set to <strong>"Enabled"</strong></li>
+          <li>Restart Chrome</li>
+        </ol>
+        <p style="color: #666; font-size: 14px;">After restarting, reload this extension and try again.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="onboarding.js"></script>
+</body>
+</html>

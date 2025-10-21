@@ -1,0 +1,39 @@
+{
+"manifest_version": 3,
+"name": "MindMark AI",
+"version": "0.1.0",
+"description": "Smart bookmark tool that saves webpages with AI-generated summaries using Chrome's built-in Gemini Nano.",
+"icons": {
+"16": "icon.png",
+"48": "icon.png",
+"128": "icon-128.png"
+},
+"action": {
+"default_title": "MindMark AI - Smart Bookmarks",
+"default_icon": {
+"16": "icon.png",
+"48": "icon.png",
+"128": "icon-128.png"
+}
+},
+"permissions": ["storage", "activeTab", "tabs", "notifications", "alarms"],
+"host_permissions": ["<all_urls>"],
+"background": {
+"service_worker": "background.js",
+"type": "module"
+},
+"content_scripts": [
+{
+"matches": ["<all_urls>"],
+"js": ["tesseract.min.js", "content.js"],
+"run_at": "document_idle",
+"all_frames": false
+}
+],
+"web_accessible_resources": [
+{
+"resources": ["tesseract.min.js"],
+"matches": ["<all_urls>"]
+}
+]
+}
