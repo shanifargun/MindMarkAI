@@ -422,9 +422,9 @@ MIT License - see [LICENSE](LICENSE) file for details
 
 ## 📧 Contact
 
-**Issues:** [GitHub Issues](https://github.com/yourusername/mindmarkai/issues)
+**Issues:** [GitHub Issues](https://github.com/shanifargun/mindmarkai/issues)
 
-**Email:** your-email@example.com
+**Email:** shanifargun@gmail.com
 
 ---
 
