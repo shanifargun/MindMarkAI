@@ -406,12 +406,6 @@ Contributions welcome! Please:
 
 ---
 
-## 📄 License
-
-MIT License - see [LICENSE](LICENSE) file for details
-
----
-
 ## 🙏 Acknowledgments
 
 - **Gemini Nano** - Google's on-device AI model
