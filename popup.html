@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Nano Demo</title>
+    <style>
+      body { font-family: system-ui, Arial, sans-serif; width: 360px; padding: 12px; }
+      textarea { width: 100%; height: 110px; }
+      #out { white-space: pre-wrap; background:#f6f6f6; padding:8px; border-radius:6px; min-height: 80px; }
+      progress { width: 100%; height: 10px; }
+      .row { display:flex; gap:8px; margin:8px 0; }
+      button { padding:6px 10px; }
+      small { color:#666; }
+    </style>
+  </head>
+  <body>
+    <h3>Gemini Nano (Prompt API)</h3>
+    <div class="row"><small id="status">Status: checking…</small></div>
+    <progress id="dl" max="100" value="0" style="display:none"></progress>
+
+    <label>System prompt</label>
+    <textarea id="sys" placeholder="You are a concise assistant."></textarea>
+
+    <label>Your prompt</label>
+    <textarea id="inp" placeholder="Summarize the key points from this page…"></textarea>
+
+    <div class="row">
+      <button id="ask">Ask</button>
+      <button id="stop">Stop</button>
+      <button id="reset">Reset session</button>
+    </div>
+
+    <div id="out"></div>
+    <script src="popup.js" type="module"></script>
+  </body>
+</html>
