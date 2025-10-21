@@ -375,6 +375,40 @@ No build process required! This is a pure JavaScript Chrome extension.
 **Issue:** Queue not processing after extension update
 - **Fix:** Check service worker console. Queue auto-resumes on load.
 
+**Issue:** Floating button disappeared
+- **Fix:** You may have clicked the close button (X). Simply refresh the page to restore it.
+---
+
+### 💡 Tips & Best Practices
+
+**Getting the Best Summaries**
+
+1. Wait for dynamic content to load - On heavy JavaScript sites (like Medium, Substack), wait 2-3 seconds before
+saving to ensure all content is loaded
+2. Avoid saving too quickly - The extension waits up to 2 seconds for content to stabilize, but very slow sites
+may need manual delay
+3. Better results with article pages - Homepages and list pages produce generic summaries; save specific articles
+instead
+
+**Managing Storage Efficiently**
+
+1. Screenshot sparingly - Each screenshot uses ~300KB. Reserve for truly important visual content (We will move to a larger storage option soon. So this is a temporary limitation)
+2. Regular cleanup - Delete old or unnecessary bookmarks monthly
+3. Monitor storage - Keep an eye on screenshot count (roadmap: storage usage warnings)
+
+**Search Tips**
+
+Use natural language queries:
+- ✅ "find the article about AI I saved last week"
+- ✅ "show me LinkedIn posts from yesterday"
+- ✅ "Epic Systems healthcare article"
+- ❌ Single keywords (use browser Ctrl+F instead)
+
+**Weekly Digest Optimization**
+
+- Set digest time for when you typically review content (e.g., Sunday evening, Monday morning)
+- If you miss a digest, the extension sends a catch-up notification on next Chrome launch
+
 ---
 
 ## 📝 Code Style
