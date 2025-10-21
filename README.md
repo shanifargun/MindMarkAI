@@ -322,8 +322,8 @@ Saves use LinkedIn activity ID as unique identifier to prevent saving the same p
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/mindmarkai.git
-cd mindmarkai
+git clone https://github.com/shanifargun/MindMarkAI.git
+cd MindMarkAI
 
 # Load extension in Chrome
 # 1. Open chrome://extensions/
@@ -422,7 +422,7 @@ MIT License - see [LICENSE](LICENSE) file for details
 
 ## 📧 Contact
 
-**Issues:** [GitHub Issues](https://github.com/yourusername/mindmarkai/issues)
+**Issues:** [GitHub Issues](https://github.com/shanifargun/MindMarkAI/issues)
 
 **Email:** your-email@example.com
 
