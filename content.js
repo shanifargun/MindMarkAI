@@ -1453,9 +1453,12 @@ function trackFloatingButtonClicked() {
   function injectSaveButtonsIntoLinkedInPosts() {
     if (!isLinkedIn()) return;
 
-    // Use stable selectors that LinkedIn uses for semantic HTML
-    // role="listitem" + componentkey containing "urn:li:activity" identifies feed posts
-    const posts = document.querySelectorAll('div[role="listitem"][componentkey*="urn:li:activity"]');
+    // Use data-urn or data-id to identify feed posts (LinkedIn updated their DOM structure)
+    // Try data-id first (more specific), fallback to data-urn
+    let posts = document.querySelectorAll('[data-id*="urn:li:activity"]');
+    if (posts.length === 0) {
+      posts = document.querySelectorAll('[data-urn*="activity"]');
+    }
 
     if (posts.length === 0) {
       return;
