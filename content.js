@@ -1226,8 +1226,24 @@ function trackFloatingButtonClicked() {
       let postUrl = window.location.href;
       let activityId = null;
 
+      // Strategy 0: Check post element itself for data-urn or data-id (for feed posts)
+      if (postElement.hasAttribute('data-urn')) {
+        const dataUrn = postElement.getAttribute('data-urn');
+        const match = dataUrn.match(/activity:(\d+)/);
+        if (match) {
+          activityId = match[1];
+        }
+      }
+      if (!activityId && postElement.hasAttribute('data-id')) {
+        const dataId = postElement.getAttribute('data-id');
+        const match = dataId.match(/activity:(\d+)/);
+        if (match) {
+          activityId = match[1];
+        }
+      }
+
       // Strategy 1: Check componentkey attribute on the post container
-      if (postElement.hasAttribute('componentkey')) {
+      if (!activityId && postElement.hasAttribute('componentkey')) {
         const componentkey = postElement.getAttribute('componentkey');
         // Handle both formats: "urn:li:activity:123" and "_expandedurn:li:activity:123FeedType_MAIN_FEED"
         const match = componentkey.match(/activity:(\d+)/);
@@ -1453,11 +1469,18 @@ function trackFloatingButtonClicked() {
   function injectSaveButtonsIntoLinkedInPosts() {
     if (!isLinkedIn()) return;
 
-    // Use data-urn or data-id to identify feed posts (LinkedIn updated their DOM structure)
-    // Try data-id first (more specific), fallback to data-urn
-    let posts = document.querySelectorAll('[data-id*="urn:li:activity"]');
-    if (posts.length === 0) {
-      posts = document.querySelectorAll('[data-urn*="activity"]');
+    let posts;
+
+    // Use different selectors based on LinkedIn page type
+    if (window.location.href.includes('/feed/')) {
+      // Main feed page - use class selector (more reliable)
+      posts = document.querySelectorAll('.feed-shared-update-v2');
+    } else {
+      // Other LinkedIn pages (profile, company, etc.) - use data attributes
+      posts = document.querySelectorAll('[data-id*="urn:li:activity"]');
+      if (posts.length === 0) {
+        posts = document.querySelectorAll('[data-urn*="activity"]');
+      }
     }
 
     if (posts.length === 0) {
@@ -1502,7 +1525,7 @@ function trackFloatingButtonClicked() {
       // Add button to wrapper
       wrapper.appendChild(saveBtn);
 
-      // Inject wrapper at the end of the post (after all content)
+      // Inject wrapper at the very bottom of the post
       post.appendChild(wrapper);
     });
   }
