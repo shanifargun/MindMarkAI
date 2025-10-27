@@ -316,6 +316,8 @@ Saves use LinkedIn activity ID as unique identifier to prevent saving the same p
    - Set to **"Enabled BypassPerfRequirement"**
    - Navigate to `chrome://flags/#prompt-api-for-gemini-nano`
    - Set to **"Enabled"**
+   - [Optional in case you want to use Multimodal AI for processing your screenshots directly, instead of OCR + Text AI] Navigate to `chrome://flags/#prompt-api-for-gemini-nano-multimodal-input`
+   - Set to **"Enabled"**
    - Restart Chrome
 
 ### Installation (Development)
