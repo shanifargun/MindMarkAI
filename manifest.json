@@ -16,7 +16,7 @@
 "128": "icon-128.png"
 }
 },
-"permissions": ["storage", "activeTab", "tabs", "notifications", "alarms"],
+"permissions": ["storage", "activeTab", "notifications", "alarms"],
 "host_permissions": ["<all_urls>"],
 "background": {
 "service_worker": "background.js",
@@ -37,3 +37,4 @@
 }
 ]
 }
+
